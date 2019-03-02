@@ -2,7 +2,7 @@ var session = require('express-session');
 
 
 module.exports= (request , response) => {
-   var list_center_lrr = [ 200, 250 , 200 , 5];
+   var list_center_lrr = [ 200, 250 , 200 , 25];
    var list_left_srr = [ 50 , 30];
    var list_right_srr = [ 50 , 30];
    var velocity= 22.00 ; //velocity of user car in m/s
@@ -17,10 +17,10 @@ module.exports= (request , response) => {
      }else{
        velocity_another_object = relative_velocity - velocity;
      }
-     
+
    //if(!request.session.data){
    var data={
-     center_lrr: 10,
+     center_lrr: 40,
      left_srr: 30,
      right_srr: 80
    };
