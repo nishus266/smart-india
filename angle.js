@@ -23,7 +23,6 @@ var velocity_another_object = 0 ;
   }
 
 var data={
-  distance: 70,
   prev_distance: 66,
   prev_p_distance: 64,
   prev_pp_distance: 62,
@@ -61,7 +60,6 @@ if( angle > threshold_angle_1 && angle < threshold_angle_2){
 }
 
 var data={
-  distance: distance,
   prev_distance: data.distance,
   prev_p_distance: data.prev_distance,
   prev_pp_distance: data.prev_p_distance,
@@ -74,4 +72,4 @@ var data={
 request.session.data = data;
 console.log(request.session.data);
 response.send(res_data);
-}
+};
