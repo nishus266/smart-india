@@ -1,5 +1,5 @@
 var data_in = require('../data_in');
-var data_out = require('../data_out');
+var new_data_out = require('../new_data_out');
 
 module.exports= (app) =>{
 
@@ -13,7 +13,7 @@ module.exports= (app) =>{
   });
 
   app.get('/dataout', (request , response) =>{
-       data_out(request , response);
+       new_data_out(request , response);
   });
 
 };

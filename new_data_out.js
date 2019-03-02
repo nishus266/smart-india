@@ -2,6 +2,27 @@ var session = require('express-session');
 
 
 module.exports= (request , response) => {
+
+   var distance= [ 140.00, 139.96, 138.99, 139.20, 140.00, 9.20, 137.99, 138.50, 2230.00  ];
+   var temp = [];
+   for(i=0 ;i<9 ; i++){
+       temp.push(parseInt(distance[i]));
+   }
+   var mf = 1;
+    var m = 0;
+    var item;
+   for(var i=0; i<temp.length; i++){
+        for (var j=i; j<temp.length; j++){
+                if (temp[i] == temp[j])
+                 m++;
+                if (mf<m){
+                  mf=m;
+                  item = temp[i];
+                }
+        }
+        m=0;
+   }
+   console.log(temp);
    var list_center_lrr = [ 200, 250 , 130 , 250];
    var list_left_srr = [ 50 , 30];
    var list_right_srr = [ 50 , 30];
