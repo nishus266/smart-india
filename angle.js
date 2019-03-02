@@ -9,6 +9,18 @@ var threshold_distance = 90;
 var threshold_classification_distance = 2.5;
 var velocity= 22.00 ; //velocity of user car in m/s
 var angle = 89.7;
+var relative_velocity = 2 ; //relative velocity
+var velocity_another_object = 0 ;
+
+  if(relative_velocity < velocity){
+       velocity_another_object = velocity + relative_velocity;
+  }else{
+       velocity_another_object = relative_velocity - velocity;
+  }
+  if(velocity > 19.44 ){
+       threshold_distance = 150; //if speed is greator then 70 km/hour then we have to do analysis on large threshold of distance
+       threshold_classification_distance = 10;
+  }
 
 var data={
   distance: 70,
