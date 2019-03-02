@@ -55,7 +55,7 @@ if( angle > threshold_angle_1 && angle < threshold_angle_2){
     }
 
 }else{
-  if(angle >= angle_prev - 0.01 && angle <= angle_prev + 0.01 &&  distance < prev_distance){
+  if(angle >= angle_prev - 0.05 && angle <= angle_prev + 0.05 &&  distance < prev_distance){
     res_data.zone =  "Not Secure";
     res_data.action =  "Alert system";
   }
