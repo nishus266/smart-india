@@ -22,6 +22,7 @@ var velocity_another_object = 0 ;
        threshold_classification_distance = 10;
   }
 
+//if(!request.session.data){
 var data={
   prev_distance: 66,
   prev_p_distance: 64,
@@ -31,6 +32,7 @@ var data={
   angle_p_prev: 89.6,
   angle_pp_prev: 89.6
 };
+//}
 request.session.data = data;
 data1=request.session.data;
 console.log(request.session.data);
