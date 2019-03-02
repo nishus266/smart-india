@@ -49,8 +49,15 @@ if( angle > threshold_angle_1 && angle < threshold_angle_2){
         res_data.zone = "Danger";
         res_data.action =  "break system active and horn system";
       }else{
+
+        if( parseInt(angle) == 89){
         res_data.zone =  "Not Secure";
-        res_data.action =  "Alert system";
+        res_data.action =  "Turn Slightly Left and horn system";
+      }else{
+        res_data.zone =  "Not Secure";
+        res_data.action =  "Turn Slightly Right and horn system";
+      }
+
       }
     }
 
