@@ -1,5 +1,5 @@
 var data_in = require('../data_in');
-var new_data_out = require('../new_data_out');
+var angle = require('../angle');
 
 module.exports= (app) =>{
 
@@ -13,7 +13,7 @@ module.exports= (app) =>{
   });
 
   app.get('/dataout', (request , response) =>{
-       new_data_out(request , response);
+       angle(request , response);
   });
 
 };

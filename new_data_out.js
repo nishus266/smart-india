@@ -2,36 +2,42 @@ var session = require('express-session');
 
 
 module.exports= (request , response) => {
-
-   var distance= [ 140.00, 139.96, 138.99, 139.20, 140.00, 9.20, 137.99, 138.50, 2230.00  ];
+   var distance= [ 140.00, 139.96, 138.99 , 138.00];
+   var angle = [89.67, 89.67, 89.68, 89.67];
    var temp = [];
-   for(i=0 ;i<9 ; i++){
+   for(i=0 ;i<4 ; i++){
        temp.push(parseInt(distance[i]));
    }
-   var mf = 1;
-    var m = 0;
-    var item;
-   for(var i=0; i<temp.length; i++){
-        for (var j=i; j<temp.length; j++){
-                if (temp[i] == temp[j])
-                 m++;
-                if (mf<m){
-                  mf=m;
-                  item = temp[i];
-                }
+   var modeMap = {};
+    var maxEl = temp[0], maxCount = 1;
+    for(var i = 0; i < temp.length; i++)
+    {
+        var el = temp[i];
+        if(modeMap[el] == null)
+            modeMap[el] = 1;
+        else
+            modeMap[el]++;
+        if(modeMap[el] > maxCount)
+        {
+            maxEl = el;
+            maxCount = modeMap[el];
         }
-        m=0;
+
+    }
+    var item= maxEl;
+   var filter_distance = [];
+   var angle_filter = [];
+   for(i=0 ;i<4 ; i++){
+       if( distance[i] < item+3 && distance[i] > item -3 ){
+          filter_distance.push(distance[i]);
+          angle_filter.push(angle[i]);
+       }
    }
-   console.log(temp);
-   var list_center_lrr = [ 200, 250 , 130 , 250];
-   var list_left_srr = [ 50 , 30];
-   var list_right_srr = [ 50 , 30];
+   var center_lrr = filter_distance.reduce((a,b) => a + b, 0) / filter_distance.length;
+   var angle = angle_filter.reduce((a,b) => a + b, 0) / angle_filter.length;
    var velocity= 22.00 ; //velocity of user car in m/s
    var relative_velocity = 2 ; //relative velocity
    var velocity_another_object = 0 ;
-   var center_lrr = Math.min.apply( Math, list_center_lrr );  //real time data in m
-   var left_srr = Math.min.apply( Math, list_left_srr );   //real time data in m
-   var right_srr = Math.min.apply( Math, list_right_srr );  //real time data in m
 
      if(relative_velocity < velocity){
        velocity_another_object = velocity + relative_velocity;
@@ -41,34 +47,28 @@ module.exports= (request , response) => {
 
    //if(!request.session.data){
    var data={
-     center_lrr: 170,
-     left_srr: 50,
-     right_srr: 80
+     center_lrr: 170
    };
    request.session.data = data;
    console.log(request.session.data);
    //}
    var center_lrr_prev = request.session.data.center_lrr; //data before 1s in m
-   var left_srr_prev = request.session.data.left_srr;  //data before 1s in m
-   var right_srr_prev = request.session.data.right_srr; //data before 1s in m
    var threshold_distance = 100;  //threshold distance use for data analysis
    var threshold_classification_distance = 5;
-   var threshold_classification_distance_left = 2;
    var threshold_value_alert = 50;
-   var threshold_value_alert_left = 10;
+  
    var res_data = {
       zone: 'Secure',
       action: 'Have a Beautiful Journey',
-      velocity: velocity
+      velocity: velocity,
    }; //object use to send data to client side for graphical User Interface
 
    //to done threshold value analysis on the basis of  our speed
    if(velocity > 19.44 ){
         threshold_distance = 200; //if speed is greator then 70 km/hour then we have to do analysis on large threshold of distance
         threshold_classification_distance = 10;
-        threshold_classification_distance_left = 5;
         threshold_value_alert = 150;
-        threshold_value_alert_left = 10;
+
    }
 
    if( center_lrr + threshold_classification_distance < center_lrr_prev ){
@@ -83,35 +83,11 @@ module.exports= (request , response) => {
       }
    }else{
 
-          if(left_srr + threshold_classification_distance_left < left_srr_prev){
-
-             if(left_srr < threshold_value_alert_left){
-
-             res_data.zone = "Not Secure";
-             res_data.action = "Turn Slightly Right and horn system";
-             }
-          }else{
-
-              res_data.zone= "Secure";
-              res_data.action = "Have a Beautiful Journey";
-          }
-
-          if(right_srr+ threshold_classification_distance_left < right_srr_prev){
-             if(right_srr < threshold_value_alert_left){
-             res_data.zone = "Not Secure";
-             res_data.action = "Turn Slightly Left and horn system";
-             }
-          }else{
-
-              res_data.zone= "Secure";
-              res_data.action = "Have a Beautiful Journey";
-          }
 
    }
    var data={
-     center_lrr: center_lrr,
-     left_srr: left_srr,
-     right_srr: right_srr
+     center_lrr: center_lrr
+
    }
    request.session.data = data;
    console.log(request.session.data);

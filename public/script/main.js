@@ -1,5 +1,6 @@
 //window.alert('working');
 setInterval( function(){
+
 axios.get('/dataout').then( function(response) {
    var p = document.getElementById('demo');
    var m = document.getElementById('zone');
@@ -23,19 +24,8 @@ axios.get('/dataout').then( function(response) {
         var hider = document.getElementById('hider');
         hider.style.display="none";
     }
-    if(response.data.zone == 'Not Secure' && response.data.action == 'Turn Slightly Right and horn system'){
-          p.innerHTML= response.data.action;
-     }
-     if(response.data.zone == 'Not Secure' && response.data.action == 'Turn Slightly Left and horn system'){
-           p.innerHTML= response.data.action;
-           var hider = document.getElementById('hider');
-           hider.style.marginLeft= "-360px";
-           hider.style.marginTop= "40px";
-           hider.style.height= "200px";
-           p.innerHTML= response.data.action;
-      }
 
  }).catch(function (error) {
  console.log(error);
  });
- },1000);
+},250);
