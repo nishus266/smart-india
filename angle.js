@@ -2,12 +2,12 @@ var session = require('express-session');
 
 
 module.exports= (request , response) => {
-var distance = 63;
+var distance = 92;
 var threshold_angle_1 = 89.5;
 var threshold_angle_2 = 90.4;
 var threshold_distance = 90;
 var threshold_classification_distance = 2.5;
-var velocity= 22.00 ; //velocity of user car in m/s
+var velocity= 16.00 ; //velocity of user car in m/s
 var angle = 89.7;
 var relative_velocity = 2 ; //relative velocity
 var velocity_another_object = 0 ;
@@ -24,7 +24,7 @@ var velocity_another_object = 0 ;
 
 //if(!request.session.data){
 var data={
-  prev_distance: 66,
+  prev_distance: 96,
   prev_p_distance: 64,
   prev_pp_distance: 62,
   angle: 89.7,
@@ -45,7 +45,10 @@ var res_data = {
 
 if( angle > threshold_angle_1 && angle < threshold_angle_2){
     if( distance + threshold_classification_distance < data1.prev_distance){
+
+
       if(distance < threshold_distance){
+
         res_data.zone = "Danger";
         res_data.action =  "break system active and horn system";
       }else{
