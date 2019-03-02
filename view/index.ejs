@@ -1,0 +1,66 @@
+<html>
+    <head>
+      <title>Collision Detection System</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+      #car{
+        color:red;
+        animation-name: acc;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
+      @keyframes acc {
+        from{ color: black;}
+        to{ color: red;}
+      }
+      </style>
+    </head>
+    <body>
+      <!-- Image and text -->
+<nav class="navbar navbar-light" style="background-color:#55AADD;">
+ <a class="navbar-brand" href="#" style="color:white;">
+
+   BitByte
+ </a>
+</nav>
+<section style="float:left;width:100%;margin-top:100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Action</h3>
+         <p id="demo" style="font-size:20px;"></p>
+      </div>
+      <div class="col-sm-6">
+        <h3>Speed</h3>
+         <p style="font-size:20px;" id="speed"></p>
+         <p style="font-size:20px;">Km/Hour</p>
+      </div>
+    </div>
+    <div class="row" style="margin-top:100px;">
+      <div class="col-sm-6" style="display:inline-flex;">
+        <h3>Angle</h3>
+
+          <i class="fas fa-car" style="font-size:240px;margin-top:30px;" id="car"></i>
+
+
+         <div id="hider" style="width:250px;height:240px;margin-left:-140px;background-color:white;"></div>
+
+      </div>
+      <div class="col-sm-6">
+        <h3>Status</h3>
+         <p style="font-size:20px;" id="zone"></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+       <script src="script/main.js"></script>
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
