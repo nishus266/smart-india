@@ -1,5 +1,6 @@
 var data_in = require('../data_in');
 var angle = require('../angle');
+var gui = require('../gui');
 
 module.exports= (app) =>{
 
@@ -16,4 +17,10 @@ module.exports= (app) =>{
        angle(request , response);
   });
 
+  app.get('/gui_api', (request , response) =>{
+       gui(request , response);
+  });
+  app.get('/gui', (request , response) =>{
+       response.render('gui.ejs', {});
+  });
 };

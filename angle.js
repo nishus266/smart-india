@@ -8,7 +8,7 @@ var threshold_angle_2 = 90.4;
 var threshold_distance = 90;
 var threshold_classification_distance = 2.5;
 var velocity= 16.00 ; //velocity of user car in m/s
-var angle = 89.9;
+var angle = 155;
 var relative_velocity = 2 ; //relative velocity
 var velocity_another_object = 0 ;
 
