@@ -37,6 +37,7 @@
 
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
+  var angle;
 
   function run(){
 
@@ -45,7 +46,7 @@
     var speed = speed * 1 / 100;
 
     var distance= parseInt(document.getElementById('distance').value);
-    var angle= document.getElementById("ange").value;
+     angle= document.getElementById("ange").value;
      var dup = (angle * 10) /10;
     var   x = parseInt(distance * Math.cos(angle * Math.PI / 180));
     var y = distance * Math.sin(angle * Math.PI / 180);
