@@ -23,4 +23,7 @@ module.exports= (app) =>{
   app.get('/gui', (request , response) =>{
        response.render('gui.ejs', {});
   });
+  app.get('/gui_data', (request , response) =>{
+       response.render('gui_data.ejs', {});
+  });
 };
