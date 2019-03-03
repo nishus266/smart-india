@@ -16,6 +16,10 @@ axios.get('/dataout').then( function(response) {
   ctx.fillRect(response.data.x_prev+150, response.data.y_prev, 10, 25);
   ctx.fillStyle = "green";
   ctx.stroke();
+  ctx.beginPath();
+  ctx.fillRect(response.data.x_p_prev+150, response.data.y_p_prev, 10, 25);
+  ctx.fillStyle = "orange";
+  ctx.stroke();
 
    var p = document.getElementById('demo');
    var m = document.getElementById('zone');

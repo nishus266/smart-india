@@ -25,7 +25,7 @@ var velocity_another_object = 0 ;
 //if(!request.session.data){
 var data={
   prev_distance: 70,
-  prev_p_distance: 67,
+  prev_p_distance: 74,
   prev_pp_distance: 62,
   angle: 89.7,
   angle_prev: 89.9,
@@ -41,6 +41,8 @@ var x_axis = distance * Math.cos(angle * Math.PI / 180);
 var y_axis = distance * Math.sin(angle * Math.PI / 180);
 var x_prev = data1.prev_distance * Math.cos(data1.angle_prev * Math.PI / 180);
 var y_prev = data1.prev_distance * Math.sin(data1.angle_prev * Math.PI / 180);
+var x_p_prev = data1.prev_p_distance * Math.cos(data1.angle_p_prev * Math.PI / 180);
+var y_p_prev = data1.prev_p_distance * Math.sin(data1.angle_p_prev * Math.PI / 180);
 var res_data = {
    zone: 'Secure',
    action: 'Have a Beautiful Journey',
@@ -48,7 +50,9 @@ var res_data = {
    x: x_axis,
    y: y_axis,
    x_prev: x_prev,
-   y_prev: y_prev
+   y_prev: y_prev,
+   x_p_prev: x_p_prev,
+   y_p_prev: y_p_prev
 
 };
 
