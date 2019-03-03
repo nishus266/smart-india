@@ -19,106 +19,35 @@
     <canvas id="myCanvas"  style="width:100%;height:500px;border:1px solid #d3d3d3;"></canvas>
   </div>
   <div class="col-sm-4">
-    <input type="text" id="speed" style="width:80%;height:30px" placeholder="speed">
-    <br><br>
-    <input type="text" id="distance" style="width:80%;height:30px" placeholder="Distance">
-    <br><br>
-    <textarea type="text" id="ange"  style="width:80%;height:30px" placeholder="angle"></textarea>
-    <br><br>
-    <input type="text" id="car" style="width:80%;height:30px" placeholder="Car Rotation">
-    <br><br>
-    <button onclick="run()" >Run</button>
-    <br><br>
-    <p id="demo"></p>
   </div>
 
   </div>
   </div>
 </section>
+
 <script>
 
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
+  setInterval( function(){
 
-  var angle;
-
-  function run(){
-
-    ctx.clearRect(0, 0, c.width, c.height);
-    var speed = parseInt(document.getElementById('speed').value);
-    var speed = speed * 1 / 100;
-
-    var distance= parseInt(document.getElementById('distance').value);
-     angle= document.getElementById("ange").value;
-    var rotate= document.getElementById("car").value;
-
-    var   x = parseInt(distance * Math.cos(angle * Math.PI / 180));
-    var y = distance * Math.sin(angle * Math.PI / 180);
-   console.log(x);
-   console.log(y);
-   console.log(rotate);
-
+  axios.get('/gui_api').then( function(response) {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.fillRect(150, 0, 10, 25);
-    ctx.fillStyle = "black";
-    ctx.fill();
-    ctx.clearRect(150+x, y+y-10, 10, 25);
-    ctx.rotate(rotate* Math.PI / 180);
-    ctx.beginPath();
-    ctx.fillRect(150 + parseInt(x) , parseInt(y), 10, 25);
-
     ctx.fillStyle = "red";
     ctx.fill();
-    ctx.clearRect(150+x, y+y-10, 10, 25);
-    recur(speed, x , y - speed , 0, rotate);
-
-  }
-
-  function recur(speed , x , y , counter,rotate){
-   console.log(rotate);
-    if(y < 25){
-
-      return 0;
-
-    }else{
-      ctx.clearRect(150+x, y+y-10, 10, 25);
-
-      console.log(x,y,counter);
-      setTimeout(function(){
-
-        ctx.beginPath();
-        ctx.fillRect(150 + x, y, 10, 25);
-        ctx.fillStyle = "red";
-        ctx.fill();
-        recur(speed , x , y - speed, counter+1, rotate);
-      }, 10);
-
-   }
-  }
-  </script>
-<script>
-
-  //setInterval( function(){
-
-  //axios.get('/gui_api').then( function(response) {
-    //var c = document.getElementById("myCanvas");
-    //var ctx = c.getContext("2d");
-    //ctx.beginPath();
-    //ctx.fillRect(150, 0, 10, 25);
-    //ctx.fillStyle = "red";
-    //ctx.fill();
-    //ctx.beginPath();
-    //ctx.fillRect( 150 + response.data.x_axis,response.data.y_axis , 10, 25);
-    //ctx.fillStyle = "black";
-    //ctx.fill();
-    //console.log(response);
+    ctx.beginPath();
+    ctx.fillRect( 150 + response.data.x_axis,response.data.y_axis , 10, 25);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    console.log(response);
 
 
 
-   //}).catch(function (error) {
-   //console.log(error);
-   //});
-  //},100);
+   }).catch(function (error) {
+   console.log(error);
+   });
+  },100);
 
 
   </script>
