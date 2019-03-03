@@ -26,27 +26,59 @@
     <input type="text" id="angle" style="width:80%;height:30px" placeholder="angle">
     <br><br>
     <button onclick="run()" >Run</button>
+    <br><br>
+    <p id="demo"></p>
   </div>
 
   </div>
   </div>
 </section>
 <script>
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+
   function run(){
-    var speed = document.getElementById('speed').value;
-    var distance= document.getElementById('distance').value;
+    ctx.clearRect(0, 0, c.width, c.height);
+    var speed = parseInt(document.getElementById('speed').value);
+    var speed = speed * 1 / 100;
+    var distance= parseInt(document.getElementById('distance').value);
     var angle= document.getElementById('angle').value;
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+    var   x = parseInt(distance * Math.cos(angle * Math.PI / 180));
+    var y = distance * Math.sin(angle * Math.PI / 180);
+console.log(x);
+console.log(y);
     ctx.beginPath();
     ctx.fillRect(150, 0, 10, 25);
     ctx.fillStyle = "black";
     ctx.fill();
+    ctx.clearRect(150+x, y+y-10, 10, 25);
     ctx.beginPath();
-    ctx.fillRect(150 + 20, distance, 10, 25);
+    ctx.fillRect(150 + parseInt(x) , parseInt(y), 10, 25);
     ctx.fillStyle = "red";
     ctx.fill();
+    ctx.clearRect(150+x, y+y-10, 10, 25);
+    recur(speed, x , y-speed , 0, angle);
 
+  }
+
+  function recur(speed , x , y , counter, angle){
+    console.log(angle);
+    if(y < 25){
+
+      return 0;
+
+    }else{
+      ctx.clearRect(150+x, y+y-10, 10, 25);
+      console.log(x,y,counter);
+      setTimeout(function(){
+        ctx.beginPath();
+        ctx.fillRect(150 + x, y, 10, 25);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        recur(speed , x , y - speed, counter+1);
+      }, 10);
+
+   }
   }
   </script>
 <script>
