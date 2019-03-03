@@ -2,7 +2,7 @@ var session = require('express-session');
 
 
 module.exports= (request , response) => {
-var distance = 92;
+var distance = 63;
 var threshold_angle_1 = 89.5;
 var threshold_angle_2 = 90.4;
 var threshold_distance = 90;
@@ -24,11 +24,11 @@ var velocity_another_object = 0 ;
 
 //if(!request.session.data){
 var data={
-  prev_distance: 96,
-  prev_p_distance: 64,
+  prev_distance: 70,
+  prev_p_distance: 67,
   prev_pp_distance: 62,
   angle: 89.7,
-  angle_prev: 89.7,
+  angle_prev: 89.9,
   angle_p_prev: 89.6,
   angle_pp_prev: 89.6
 };
@@ -39,13 +39,17 @@ console.log(request.session.data);
 
 var x_axis = distance * Math.cos(angle * Math.PI / 180);
 var y_axis = distance * Math.sin(angle * Math.PI / 180);
-
+var x_prev = data1.prev_distance * Math.cos(data1.angle_prev * Math.PI / 180);
+var y_prev = data1.prev_distance * Math.sin(data1.angle_prev * Math.PI / 180);
 var res_data = {
    zone: 'Secure',
    action: 'Have a Beautiful Journey',
    velocity: velocity,
    x: x_axis,
-   y: y_axis
+   y: y_axis,
+   x_prev: x_prev,
+   y_prev: y_prev
+
 };
 
 if( angle > threshold_angle_1 && angle < threshold_angle_2){
@@ -77,13 +81,13 @@ if( angle > threshold_angle_1 && angle < threshold_angle_2){
 }
 
 var data={
-  prev_distance: data.distance,
-  prev_p_distance: data.prev_distance,
-  prev_pp_distance: data.prev_p_distance,
+  prev_distance: distance,
+  prev_p_distance: data1.prev_distance,
+  prev_pp_distance: data1.prev_p_distance,
   angle: angle,
-  angle_prev: data.angle,
-  angle_p_prev: data.angle_prev,
-  angle_pp_prev: data.angle_p_prev
+  angle_prev: data1.angle,
+  angle_p_prev: data1.angle_prev,
+  angle_pp_prev: data1.angle_p_prev
 
 };
 request.session.data = data;
