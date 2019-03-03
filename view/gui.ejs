@@ -20,39 +20,60 @@
   </div>
   <div class="col-sm-4">
     <input type="text" id="speed" style="width:80%;height:30px" placeholder="speed">
-    <br>
+    <br><br>
     <input type="text" id="distance" style="width:80%;height:30px" placeholder="Distance">
-    <br>
+    <br><br>
     <input type="text" id="angle" style="width:80%;height:30px" placeholder="angle">
-    <br>
+    <br><br>
+    <button onclick="run()" >Run</button>
   </div>
 
   </div>
   </div>
 </section>
 <script>
-
-  setInterval( function(){
-
-  axios.get('/gui_api').then( function(response) {
+  function run(){
+    var speed = document.getElementById('speed').value;
+    var distance= document.getElementById('distance').value;
+    var angle= document.getElementById('angle').value;
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.fillRect(150, 0, 10, 25);
-    ctx.fillStyle = "red";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.fillRect( 150 + response.data.x_axis,response.data.y_axis , 10, 25);
     ctx.fillStyle = "black";
     ctx.fill();
-    console.log(response);
+    ctx.beginPath();
+    ctx.fillRect(150 + 20, distance, 10, 25);
+    ctx.fillStyle = "red";
+    ctx.fill();
+
+  }
+  </script>
+<script>
+
+  //setInterval( function(){
+
+  //axios.get('/gui_api').then( function(response) {
+    //var c = document.getElementById("myCanvas");
+    //var ctx = c.getContext("2d");
+    //ctx.beginPath();
+    //ctx.fillRect(150, 0, 10, 25);
+    //ctx.fillStyle = "red";
+    //ctx.fill();
+    //ctx.beginPath();
+    //ctx.fillRect( 150 + response.data.x_axis,response.data.y_axis , 10, 25);
+    //ctx.fillStyle = "black";
+    //ctx.fill();
+    //console.log(response);
 
 
 
-   }).catch(function (error) {
-   console.log(error);
-   });
-  },100);
+   //}).catch(function (error) {
+   //console.log(error);
+   //});
+  //},100);
+
+
   </script>
     <!--<script src="script/gui_new.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

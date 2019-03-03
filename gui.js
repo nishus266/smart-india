@@ -10,7 +10,7 @@ module.exports = (request , response) =>{
       //console.info( statusCode );
       //console.info( '---' );
       var m=JSON.parse(body);
-      var angle = 70 ;
+      var angle = 90 ;
       var x_axis=  m.distance * Math.cos(angle * Math.PI / 180);
       var y_axis=  m.distance * Math.sin(angle * Math.PI / 180);
 
