@@ -2,6 +2,17 @@
 setInterval( function(){
 
 axios.get('/dataout').then( function(response) {
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.fillRect(150, 0, 10, 25);
+  ctx.fillStyle = "red";
+  ctx.fill();
+  ctx.beginPath();
+  ctx.fillRect(response.data.x+150, response.data.y, 10, 25);
+  ctx.fillStyle = "black";
+  ctx.fill();
+
    var p = document.getElementById('demo');
    var m = document.getElementById('zone');
    console.log(response);

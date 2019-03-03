@@ -8,7 +8,7 @@ var threshold_angle_2 = 90.4;
 var threshold_distance = 90;
 var threshold_classification_distance = 2.5;
 var velocity= 16.00 ; //velocity of user car in m/s
-var angle = 89.7;
+var angle = 89.9;
 var relative_velocity = 2 ; //relative velocity
 var velocity_another_object = 0 ;
 
@@ -37,10 +37,15 @@ request.session.data = data;
 data1=request.session.data;
 console.log(request.session.data);
 
+var x_axis = distance * Math.cos(angle * Math.PI / 180);
+var y_axis = distance * Math.sin(angle * Math.PI / 180);
+
 var res_data = {
    zone: 'Secure',
    action: 'Have a Beautiful Journey',
    velocity: velocity,
+   x: x_axis,
+   y: y_axis
 };
 
 if( angle > threshold_angle_1 && angle < threshold_angle_2){
@@ -65,7 +70,7 @@ if( angle > threshold_angle_1 && angle < threshold_angle_2){
     }
 
 }else{
-  if(angle >= angle_prev - 0.05 && angle <= angle_prev + 0.05 &&  distance < prev_distance){
+  if(angle >= data1.angle_prev - 0.05 && angle <= data1.angle_prev + 0.05 &&  distance < data1.prev_distance){
     res_data.zone =  "Not Secure";
     res_data.action =  "Alert system";
   }
